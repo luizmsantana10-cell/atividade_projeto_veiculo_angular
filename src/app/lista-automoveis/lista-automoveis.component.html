@@ -23,18 +23,15 @@
     <!-- Lista 1: Carros em Aberto -->
     <div id="div-list">
         @for (elem of listaItens; track elem.idProduto) {
-            <div class="div-item" [class.item-concluido]="elem.statusSelecionado">
+            <div class="div-item">
                 <input 
                     type="checkbox" 
-                    [(ngModel)]="elem.statusSelecionado">
+                    [(ngModel)]="elem.statusSelecionado"
+                    (change)="moverParaConsertados(elem)">
 
-                <span [class.riscado]="elem.statusSelecionado">
+                <span>
                     #{{elem.idProduto}} - {{elem.descricaoCarro}} (R$ {{elem.valorCarro}})
                 </span>
-
-                <button type="button" (click)="moverParaConsertados(elem)">
-                    🔧 Consertado
-                </button>
             </div>
         } @empty {
             <div class="div-item">
@@ -51,13 +48,14 @@
     <div id="div-list-consertados">
         @for (elem of listaConsertados; track elem.idProduto) {
             <div class="div-item item-concluido">
-                <span>
-                     #{{elem.idProduto}} - {{elem.descricaoCarro}} (R$ {{elem.valorCarro}})
-                </span>
+                <input 
+                    type="checkbox" 
+                    [(ngModel)]="elem.statusSelecionado"
+                    (change)="voltarParaLista(elem)">
 
-                <button type="button" (click)="voltarParaLista(elem)">
-                    ↩ Voltar pra lista
-                </button>
+                <span class="riscado">
+                    ✅ #{{elem.idProduto}} - {{elem.descricaoCarro}} (R$ {{elem.valorCarro}})
+                </span>
             </div>
         } @empty {
             <div class="div-item">

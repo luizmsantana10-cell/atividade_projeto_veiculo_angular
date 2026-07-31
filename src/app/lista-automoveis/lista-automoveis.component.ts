@@ -13,14 +13,12 @@ export class ListaAutomoveisComponent {
   descricaoCarro: string = '';
   valorCarro: number = 0;
 
-  // Listas de controle
   listaItens: Item[] = [];
-  listaConsertados: Item[] = []; 
+  listaConsertados: Item[] = [];
 
   addItem() {
     if (!this.descricaoCarro.trim()) return;
 
-    // Gera o id considerando o total de itens já criados
     const proximoId = this.listaItens.length + this.listaConsertados.length + 1;
 
     const item = new Item(
@@ -35,15 +33,16 @@ export class ListaAutomoveisComponent {
     this.valorCarro = 0;
   }
 
-  // Move o carro para a lista de consertados
+  // Mover para a lista de consertados ao marcar o checkbox
   moverParaConsertados(item: Item) {
+    item.statusSelecionado = true;
     this.listaItens = this.listaItens.filter(i => i.idProduto !== item.idProduto);
-    item.statusSelecionado = false; // reseta a seleção
     this.listaConsertados.push(item);
   }
 
-  // Permite devolver o carro para a lista principal caso precise
+  // Voltar para a lista principal ao desmarcar o checkbox
   voltarParaLista(item: Item) {
+    item.statusSelecionado = false;
     this.listaConsertados = this.listaConsertados.filter(i => i.idProduto !== item.idProduto);
     this.listaItens.push(item);
   }
