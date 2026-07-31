@@ -1,49 +1,68 @@
 <div id="div_form">
-    <h3>Lista Carros</h3>
+    <h3>Lista Carros (Aguardando Manutenção)</h3>
 
     <form id="formulario">
-        <label id="descricao_carro">Descrição do Carro</label>
-
+        <label for="descricao">Descrição do Carro</label>
         <input 
-        type="text"
-        name="descricao"
-        id="descricao"
-        [(ngModel)]="descricaoCarro"
-        >
+            type="text"
+            name="descricao"
+            id="descricao"
+            [(ngModel)]="descricaoCarro">
 
         <label for="valor_carro">Valor do Carro</label>
-
         <input 
-        type="text"
-        name="valor_carro"
-        id="valor_carro"
-        [(ngModel)]= "valorCarro">
+            type="number"
+            name="valor_carro"
+            id="valor_carro"
+            [(ngModel)]="valorCarro">
 
         <button type="button" id="addbutton" (click)="addItem()">Adicionar</button>
-
-        <button type="button" id="limpar"(click)="limparTudo">Limpar</button>
+        <button type="button" id="limpar" (click)="limparTudo()">Limpar Tudo</button>
     </form>
-    <div id="div-list">
-        @for(elem of listaItens; track elem.idProduto){
 
+    <!-- Lista 1: Carros em Aberto -->
+    <div id="div-list">
+        @for (elem of listaItens; track elem.idProduto) {
             <div class="div-item" [class.item-concluido]="elem.statusSelecionado">
-                
                 <input 
                     type="checkbox" 
                     [(ngModel)]="elem.statusSelecionado">
 
                 <span [class.riscado]="elem.statusSelecionado">
-                    {{elem.idProduto}} - {{elem.descricaoCarro}} R$ {{elem.valorCarro}}
+                    #{{elem.idProduto}} - {{elem.descricaoCarro}} (R$ {{elem.valorCarro}})
                 </span>
 
+                <button type="button" (click)="moverParaConsertados(elem)">
+                    🔧 Consertado
+                </button>
             </div>
-
-        }@empty{
-
+        } @empty {
             <div class="div-item">
-                Nenhum Carro na lista
+                Nenhum carro na fila de manutenção.
             </div>
+        }
+    </div>
 
+    <hr>
+
+    <!-- Lista 2: Carros Consertados -->
+    <h3>Carros Consertados</h3>
+    
+    <div id="div-list-consertados">
+        @for (elem of listaConsertados; track elem.idProduto) {
+            <div class="div-item item-concluido">
+                <span>
+                     #{{elem.idProduto}} - {{elem.descricaoCarro}} (R$ {{elem.valorCarro}})
+                </span>
+
+                <button type="button" (click)="voltarParaLista(elem)">
+                    ↩ Voltar pra lista
+                </button>
+            </div>
+        } @empty {
+            <div class="div-item">
+                Nenhum carro consertado ainda.
+            </div>
         }
     </div>
 </div>

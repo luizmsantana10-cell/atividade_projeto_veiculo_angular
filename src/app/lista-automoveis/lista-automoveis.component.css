@@ -1,0 +1,191 @@
+/* Importação de fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Reset e Estilos Globais */
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Card Principal */
+#div_form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+/* Títulos */
+h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Formulário */
+#formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+#formulario label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: -4px;
+}
+
+#formulario input[type="text"],
+#formulario input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+#formulario input[type="text"]:focus,
+#formulario input[type="number"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Botões do Formulário */
+#formulario button {
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+#addbutton {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+#addbutton:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+#limpar {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+#limpar:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Divisor */
+hr {
+  border: none;
+  border-top: 1px dashed #cbd5e1;
+  margin: 32px 0;
+}
+
+/* Listas de Carros */
+#div-list,
+#div-list-consertados {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Cards de Cada Item */
+.div-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #f1f5f9;
+  border-radius: 10px;
+  border-left: 4px solid #3b82f6;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.div-item:hover {
+  background-color: #e2e8f0;
+}
+
+.div-item span {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.div-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #2563eb;
+}
+
+/* Botões de Ação dentro da Lista */
+.div-item button {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #1e293b;
+  transition: all 0.2s ease;
+}
+
+.div-item button:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  transform: scale(1.02);
+}
+
+/* Estilos de Estado */
+.item-concluido {
+  background-color: #f0fdf4;
+  border-left-color: #22c55e;
+}
+
+.riscado {
+  text-decoration: line-through;
+  color: #94a3b8 !important;
+}
+
+/* Estilo Específico para Lista de Consertados */
+#div-list-consertados .div-item {
+  border-left-color: #10b981;
+  background-color: #ecfdf5;
+}
+
+/* Mensagem de Lista Vazia (@empty) */
+.div-item:only-child {
+  justify-content: center;
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  background-color: #f8fafc;
+  border-left: 4px solid #cbd5e1;
+}

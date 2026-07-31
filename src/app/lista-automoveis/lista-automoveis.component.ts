@@ -10,32 +10,48 @@ import { Item } from './item';
   styleUrl: './lista-automoveis.component.css'
 })
 export class ListaAutomoveisComponent {
-  descricao_carro:string = '';
-  valor_carro: number = 0;
+  descricaoCarro: string = '';
+  valorCarro: number = 0;
 
+  // Listas de controle
   listaItens: Item[] = [];
+  listaConsertados: Item[] = []; 
 
   addItem() {
-    if (!this.descricao_carro.trim())return;
-    
+    if (!this.descricaoCarro.trim()) return;
+
+    // Gera o id considerando o total de itens já criados
+    const proximoId = this.listaItens.length + this.listaConsertados.length + 1;
+
     const item = new Item(
-      this.listaItens.length + 1,
-      this.descricao_carro,
-      this.valor_carro
+      proximoId,
+      this.descricaoCarro,
+      this.valorCarro
     );
 
     this.listaItens.push(item);
 
-    this.descricao_carro = '';
-    this.valor_carro = 0;
+    this.descricaoCarro = '';
+    this.valorCarro = 0;
+  }
 
+  // Move o carro para a lista de consertados
+  moverParaConsertados(item: Item) {
+    this.listaItens = this.listaItens.filter(i => i.idProduto !== item.idProduto);
+    item.statusSelecionado = false; // reseta a seleção
+    this.listaConsertados.push(item);
+  }
+
+  // Permite devolver o carro para a lista principal caso precise
+  voltarParaLista(item: Item) {
+    this.listaConsertados = this.listaConsertados.filter(i => i.idProduto !== item.idProduto);
+    this.listaItens.push(item);
   }
 
   limparTudo() {
     this.listaItens = [];
-    this.descricao_carro = '';
-    this.valor_carro = 0;
+    this.listaConsertados = [];
+    this.descricaoCarro = '';
+    this.valorCarro = 0;
   }
-
-
 }

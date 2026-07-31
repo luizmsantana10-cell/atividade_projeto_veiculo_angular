@@ -1,17 +1,16 @@
 export class Item {
-
     idProduto?: number;
     descricaoCarro?: string;
     valorCarro?: number;
-    statusSelecionado: boolean = false
-    
+    statusSelecionado: boolean = false;
+  
     constructor(
-        idProduto:number,
-        descricaoCarro: string,
-        valorCarro: number
+      idProduto: number,
+      descricaoCarro: string,
+      valorCarro: number
     ) {
-        this.idProduto = idProduto;
-        this.descricaoCarro = this.descricaoCarro;
-        this.valorCarro = valorCarro;
+      this.idProduto = idProduto;
+      this.descricaoCarro = descricaoCarro; // Corrigido aqui
+      this.valorCarro = valorCarro;
     }
-}
+  }
